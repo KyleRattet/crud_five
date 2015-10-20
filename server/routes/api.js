@@ -8,6 +8,12 @@ router.get('/', function(req, res, next) {
 });
 
 
-
+//ROUTE 1. GET All Capitals
+router.get('/capitals', function (req, res, next) {
+  Capitals.findQ()
+    .then(function (result) {res.json(result) })
+    .catch(function (err) {res.send(err) })
+    .done();
+})
 
 module.exports = router;
