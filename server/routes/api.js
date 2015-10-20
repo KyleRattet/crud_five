@@ -14,6 +14,15 @@ router.get('/capitals', function (req, res, next) {
     .then(function (result) {res.json(result) })
     .catch(function (err) {res.send(err) })
     .done();
-})
+});
+
+//ROUTE 2. GET One Capital
+router.get('/capitals/:id', function (req, res, next) {
+  Capitals.findByIdQ(req.params.id)
+  .then(function (result) {res.json(result) })
+  .catch(function (err) {res.send(err) })
+  .done();
+});
+
 
 module.exports = router;
