@@ -15,6 +15,8 @@ var routes = require('./routes/index.js');
 // *** express instance *** //
 var app = express();
 
+// *** config file *** //
+var config = require('./_config');
 
 // *** view engine *** //
 var swig = new swig.Swig();
