@@ -24,5 +24,21 @@ router.get('/capital/:id', function (req, res, next) {
   .done();
 });
 
+//ROUTE 3. POST Capital
+router.post('/capitals', function (req, res, next) {
+  newCapitals = new Capitals ({
+    state: req.body.state,
+    capital: req.body.capital
+  });
+  newCapitals.saveQ()
+  .then(function (result) {
+    res.json({"SUCCESS": result});
+    })
+  .catch(function (err) {
+    res.send(err);
+  })
+  .done();
+});
+
 
 module.exports = router;
