@@ -17,7 +17,7 @@ router.get('/capitals', function (req, res, next) {
 });
 
 //ROUTE 2. GET One Capital
-router.get('/capitals/:id', function (req, res, next) {
+router.get('/capital/:id', function (req, res, next) {
   Capitals.findByIdQ(req.params.id)
   .then(function (result) {res.json(result) })
   .catch(function (err) {res.send(err) })

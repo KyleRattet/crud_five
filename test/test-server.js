@@ -47,6 +47,24 @@ describe('Capitals', function () {
     });
   });
 
+  //2. Get one
+
+   it('should list a SINGLE capital on /capital/<id> GET', function(done) {
+    var newCapital = new Capitals({
+      state: "California",
+      capital: "Sacremento",
+    });
+    newCapital.save(function(err, data) {
+      chai.request(server)
+        .get('/api/v1/capital/'+data.id)
+        .end(function(err, res){
+          res.should.have.status(200);
+          res.should.be.json;
+          res.body.should.be.a('object');
+          done();
+        });
+    });
+  });
 
 
 });
