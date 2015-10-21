@@ -41,4 +41,27 @@ router.post('/capitals', function (req, res, next) {
 });
 
 
+//ROUTE 4. Put
+router.put('/capital/:id', function (req, res, next) {
+  var update = {
+    state: req.body.state,
+    capital: req.body.capital
+  }
+  var options = {new: true};
+  Capitals.findByIdAndUpdateQ(req.params.id, update, options)
+  .then(function (result) {
+    res.json({"UPDATED": result});
+  })
+  .catch(function (err) {
+    res.send(err);
+  })
+  .done();
+});
+
+
+
+
+
+
+
 module.exports = router;

@@ -83,18 +83,15 @@ describe('Capitals', function () {
   });
 
 //4. PUT Test
-  xit("should update a single project on /project PUT", function(done){
+  it("should update a single capital on /capital PUT", function(done){
   chai.request(server)
-    .get('/api/v1/projects')
+    .get('/api/v1/capitals')
     .end(function(err, res){
       chai.request(server)
-        .put('/api/v1/project/'+res.body[0]._id)
+        .put('/api/v1/capital/'+res.body[0]._id)
         .send({
-          'name': 'RP&S',
-          'description': "Angular Practice",
-          'tags': ['angular'],
-          'group': true,
-          'group_members': ['Pete']
+          'state': 'Florida',
+          'capital': "Tallahasse",
           })
         .end(function(error, response){
           response.should.have.status(200);
@@ -102,10 +99,6 @@ describe('Capitals', function () {
           response.body.should.be.a('object');
           response.body.should.have.property('UPDATED');
           response.body.UPDATED.should.be.a('object');
-          response.body.UPDATED.should.have.property('name');
-          response.body.UPDATED.should.have.property('_id');
-          response.body.UPDATED.name.should.equal('RP&S');
-          response.body.UPDATED.description.should.equal('Angular Practice');
           done();
       });
     });
