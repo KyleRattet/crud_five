@@ -106,24 +106,18 @@ describe('Capitals', function () {
 
 
 //5. DELETE TEST
-  xit('should delete a SINGLE project on /project/<id> DELETE', function(done) {
+  it('should delete a SINGLE capital on /capital/<id> DELETE', function(done) {
   chai.request(server)
-    .get('/api/v1/projects')
+    .get('/api/v1/capitals')
     .end(function(err, res){
       chai.request(server)
-        .delete('/api/v1/project/'+res.body[0]._id)
+        .delete('/api/v1/capital/'+res.body[0]._id)
         .end(function(error, response){
-          console.log(response.body)
           response.should.have.status(200);
           response.should.be.json;
           response.body.should.be.a('object');
           response.body.should.have.property('REMOVED');
           response.body.REMOVED.should.be.a('object');
-          response.body.REMOVED.should.have.property('name');
-          response.body.REMOVED.should.have.property('_id');
-          response.body.REMOVED.name.should.equal('Paper, Rock, Scissors');
-          response.body.REMOVED.description.should.equal('Angular and logic exercise');
-          response.body.REMOVED.group_members[0].should.equal('Chip');
           done();
       });
     });

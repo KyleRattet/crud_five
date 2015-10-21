@@ -59,6 +59,17 @@ router.put('/capital/:id', function (req, res, next) {
 });
 
 
+//ROUTE 5 Delele
+router.delete('/capital/:id', function (req, res, next) {
+  Capitals.findByIdAndRemoveQ(req.params.id)
+  .then(function (result) {
+    res.json({"REMOVED": result});
+  })
+  .catch(function  (err) {
+    res.send(err);
+  })
+  .done();
+});
 
 
 
